@@ -568,6 +568,23 @@ class Client implements Stdlib\DispatchableInterface
     }
 
     /**
+     * Add an array of cookies
+     *
+     * @param array cookies
+     * @throws Exception\InvalidArgumentException
+     */
+    public function addCookies($cookies)
+    {
+        if(is_array($cookies)) {
+            foreach ($cookies as $setCookie) {
+                $this->addCookie($setCookie);
+            }
+        } else {
+            throw new Exception\InvalidArgumentException('Invalid cookies passed as parameter, it must be an array');
+        }
+    }
+
+    /**
      * Set an array of cookies
      *
      * @param  array $cookies
